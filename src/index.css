@@ -1,0 +1,11 @@
+body {
+    font-family: sans-serif;
+    margin: 3rem;
+    background-color: #dfdfdf;
+}
+
+.craftOverlay{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

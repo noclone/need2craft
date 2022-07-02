@@ -1,0 +1,26 @@
+.ItemsList{
+    border: 5px solid gray;
+    width: 500px;
+    height: 350px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    overflow-y: hidden;
+    background-color: lightgray;
+}
+
+.ItemsList:hover{
+    overflow-y: auto;
+}
+
+.Item, .ItemSelected{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+}
+
+.ItemSelected{
+    outline: 1px solid gray;
+}

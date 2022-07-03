@@ -9,3 +9,9 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
+
+
+.resultSlot{
+    margin-left: 50px;
+}

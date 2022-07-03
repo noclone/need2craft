@@ -6,9 +6,9 @@ import { useDrag } from "react-dnd";
 
 function Item(props)
 {
-    const [ {}, drag ] = useDrag(() => ({
+    const [ isDragging, drag ] = useDrag(() => ({
         type: "image",
-        item: {id: props.img},
+        item: {id: props.img, name:props.name},
         collect: (monitor) => ({
              isDragging: !!monitor.isDragging(),
         })

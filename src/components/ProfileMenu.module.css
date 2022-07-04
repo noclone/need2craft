@@ -1,0 +1,26 @@
+.dropdown{
+  position: absolute;
+  margin-top: 2.5rem;
+  transform: translateX(-5%);
+  width: 10rem;
+  background-color: rgb(165, 155, 155);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: height 500ms ease;
+  z-index: 10;
+}
+
+.menu_item {
+  color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  border: black;
+  transition: background 300ms ease;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.menu_item:hover {
+  background-color: rgb(104, 104, 104);
+}

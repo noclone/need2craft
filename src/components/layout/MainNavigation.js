@@ -1,8 +1,14 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import classes from './MainNavigation.module.css'
+import classes from "./MainNavigation.module.css";
+import ProfileMenu from "../ProfileMenu"
 
-function MainNavigation() {
+import BackDrop from "../BackDrop"
+
+function MainNavigation(props) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header className={classes.header}>
       <div className={classes.logo}>need2craft</div>
@@ -11,9 +17,23 @@ function MainNavigation() {
           <li>
             <Link to="/newCraft">New Craft</Link>
           </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
+          {props.loggedIn == null && (
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          )}
+          {props.loggedIn != null && (
+            <div className={classes.wrapper}>
+              <button
+                className={classes.user}
+                onClick={() => setIsOpen(true)}
+              >
+                {props.loggedIn.username}
+              </button>
+              {isOpen && <BackDrop onClick={() => setIsOpen(false)}/>}
+              {isOpen && <ProfileMenu disconnect={props.disconnect} close={() => setIsOpen(false)}/>}
+            </div>
+          )}
         </ul>
       </nav>
     </header>

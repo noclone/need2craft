@@ -20,7 +20,7 @@ const getUsers = () => {
 
   const getUser = (username) => {
     return new Promise(function(resolve, reject) {
-      pool.query(`SELECT * FROM need2craft.users WHERE username = '${username}'`, (error, results) => {
+      pool.query(`SELECT * FROM need2craft.users WHERE username = '${username}' OR email = '${username}'`, (error, results) => {
         if (error) {
           reject(error)
         }
@@ -29,13 +29,18 @@ const getUsers = () => {
     }) 
   }
 
-  const addUser = (username) => {
+  const addUser = (body) => {
+    const { username, email, password } = body
     return new Promise(function(resolve, reject) {
-      pool.query(`INSERT INTO need2craft.users VALUES ('${username}')`, (error, results) => {
+      pool.query(`INSERT INTO need2craft.users (username, email, password) VALUES (
+        '${username}',
+        '${email}',
+        crypt( '${password}', gen_salt('bf'))
+      ) RETURNING username, email;`, (error, results) => {
         if (error) {
           reject(error)
         }
-        resolve("User Added");
+        resolve(results.rows);
       })
     }) 
   }
@@ -51,6 +56,19 @@ const getUsers = () => {
     }) 
   }
 
+  const loginUser = (body) => {
+    const { identifier, password } = body
+    return new Promise(function(resolve, reject) {
+      pool.query(`SELECT username, email FROM need2craft.users WHERE (email = '${identifier}' OR username = '${identifier}')
+      AND password = crypt('${password}', password);`, (error, results) => {
+        if (error) {
+          reject(error)
+        }
+        resolve(results.rows);
+      })
+    }) 
+  }
+
 
 
 
@@ -59,4 +77,5 @@ module.exports = {
     getUser,
     addUser,
     removeUser,
+    loginUser,
 }

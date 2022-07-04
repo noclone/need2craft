@@ -1,6 +1,7 @@
 import CraftTable from "./CraftTable";
 import arrow from "./images/arrow.png";
 import Slot from "./Slot"
+import { HOST, PORT } from "../utils/env"
 
 import classes from "./CraftTable.module.css"
 import { useState } from "react";
@@ -22,7 +23,7 @@ function Craft()
     const addCraft = () => {
         if (result == null || table.every((el) => el == null))
             return;
-        fetch('http://localhost:3001/crafts', {
+        fetch(`http://${HOST}:${PORT}/crafts`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

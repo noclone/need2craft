@@ -40,8 +40,8 @@ app.get('/users/:id', (req, res) => {
     })
 })
 
-app.post('/users/:id', (req, res) => {
-    users.addUser(req.params.id)
+app.post('/register', (req, res) => {
+    users.addUser(req.body)
     .then(response => {
         res.status(200).send(response);
     })
@@ -52,6 +52,16 @@ app.post('/users/:id', (req, res) => {
 
 app.delete('/users/:id', (req, res) => {
     users.removeUser(req.params.id)
+    .then(response => {
+        res.status(200).send(response);
+    })
+    .catch(error => {
+        res.status(500).send(error);
+    })
+})
+
+app.post('/login', (req, res) => {
+    users.loginUser(req.body)
     .then(response => {
         res.status(200).send(response);
     })

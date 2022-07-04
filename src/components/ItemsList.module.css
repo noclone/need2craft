@@ -57,3 +57,20 @@
     border-radius: 4px;
     padding: .5rem;
 }
+
+.deleteBtn{
+    width: fit-content;
+    font: inherit;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #800040;
+    color: white;
+    border: none;
+    margin: 0 1rem;
+    margin-left: 3rem;
+}
+
+.deleteBtn:hover{
+    background-color: #800040b9;
+}

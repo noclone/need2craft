@@ -5,6 +5,8 @@ import { HOST, PORT } from "../utils/env";
 
 import { useNavigate } from "react-router-dom";
 
+import baseItems from './baseItems.json'
+
 function Register(props) {
   const navigate = useNavigate();
 
@@ -17,6 +19,22 @@ function Register(props) {
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [invalidConfirmPassword, setInvalidConfirmPassword] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
+
+  function addBaseItems(){
+    baseItems.forEach((item) => {
+      fetch(`http://${HOST}:${PORT}/items`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: item.name,
+          img: item.img,
+          owner: username,
+        }),
+      })
+    })
+  }
 
   const register = async (event) => {
     event.preventDefault();
@@ -38,9 +56,10 @@ function Register(props) {
       })
       .then((data) => {
         console.log(data)
-        /*const array = JSON.parse(data);
+        const array = JSON.parse(data);
         props.onLogIn(array[0]);
-        navigate("/newCraft");*/
+        addBaseItems();
+        navigate("/newCraft");
       });
   };
 

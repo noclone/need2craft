@@ -8,7 +8,7 @@ import baseItems from './baseItems.json'
 
 function ItemsList(props){
 
-    const [ itemsList, setItemsList ] = useState(baseItems)
+    const [ itemsList, setItemsList ] = useState([])
 
     function updateList(){
         if (props.loggedIn != null)
@@ -19,14 +19,20 @@ function ItemsList(props){
             })
             .then((data) => {
                 const array = JSON.parse(data)
-                setItemsList(baseItems.concat(array))
+                setItemsList(array)
             })
         }
+        else
+            setItemsList(baseItems)
     }
 
     useEffect(() => {
         updateList()
     }, [props.loggedIn])
+    
+    function deleteSelectedItems(){
+        
+    }
 
     return (
         <div className={classes.container}>
@@ -37,7 +43,10 @@ function ItemsList(props){
                 );
             })}
             </ol>
-            <button onClick={updateList} className={classes.refreshBtn}>Refresh List</button>
+            <div>
+                <button onClick={updateList} className={classes.refreshBtn}>Refresh List</button>
+                <button onClick={deleteSelectedItems} className={classes.deleteBtn}>Delete Selected Items</button>
+            </div>
         </div>
     );
     

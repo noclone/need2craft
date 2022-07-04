@@ -1,17 +1,18 @@
-import ItemsList from "./components/ItemsList";
-import Craft from "./components/Craft"
+import NewCraftPage from "./components/pages/NewCraftPage";
+import LoginPage from "./components/pages/LoginPage";
+import MainNavigation from "./components/layout/MainNavigation";
 
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <DndProvider backend={HTML5Backend}>
-    <div className="craftOverlay">
-      <Craft />
-      <ItemsList />
+    <div>
+      <MainNavigation />
+      <Routes>
+        <Route exact path="/login" element={<LoginPage />}></Route>
+        <Route exact path="/newCraft" element={<NewCraftPage />}></Route>
+      </Routes>
     </div>
-    </DndProvider>
   );
 }
 

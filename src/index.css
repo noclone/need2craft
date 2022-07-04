@@ -1,17 +1,12 @@
 body {
-    font-family: sans-serif;
-    margin: 3rem;
-    background-color: #dfdfdf;
+  font-family: sans-serif;
+  margin: 0px;
+  background-color: #dfdfdf;
 }
 
-.craftOverlay{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-
-.resultSlot{
-    margin-left: 50px;
+.craftOverlay {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

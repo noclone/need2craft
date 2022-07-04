@@ -5,6 +5,7 @@ import MainNavigation from "./components/layout/MainNavigation";
 import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import RegisterPage from "./components/pages/RegisterPage";
 import { useState } from "react";
+import ResourcesPage from "./components/pages/ResourcesPage";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
     <div>
       <MainNavigation loggedIn={user} disconnect = {() => {setUser(null); navigate("/login")}}/>
       <Routes>
+        <Route path="/" element={<ResourcesPage loggedIn={user} />}></Route>
         <Route path="/login" element={<LoginPage onLogIn={(user) => setUser(user)}/>}></Route>
         <Route path="/register" element={<RegisterPage onLogIn={(user) => setUser(user)}/>}></Route>
         <Route path="/newCraft" element={<NewCraftPage loggedIn={user}/>}></Route>

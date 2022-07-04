@@ -12,6 +12,11 @@
   font-size: 2rem;
   color: white;
   font-weight: bold;
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: lightgray;
 }
 
 .header ul {
@@ -26,15 +31,15 @@
   margin-left: 3rem;
 }
 
-.header a {
+.header a:not(.logo){
   text-decoration: none;
   font-size: 1.5rem;
   color: #fcb8d2;
 }
 
-.header a:hover,
-.header a:active,
-.header a.active{
+.header a:hover:not(.logo),
+.header a:active:not(.logo),
+.header a.active:not(.logo){
   color: white;
 }
 

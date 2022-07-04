@@ -11,7 +11,9 @@ function MainNavigation(props) {
 
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>need2craft</div>
+      <div className={classes.logo}>
+        <Link className={classes.logo} to="/">need2Craft</Link>
+      </div>
       <nav>
         <ul>
           <li>

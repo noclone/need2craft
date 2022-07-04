@@ -17,8 +17,8 @@ function App() {
       <MainNavigation loggedIn={user} disconnect = {() => {setUser(null); navigate("/login")}}/>
       <Routes>
         <Route path="/login" element={<LoginPage onLogIn={(user) => setUser(user)}/>}></Route>
-        <Route path="/register" element={<RegisterPage />}></Route>
-        <Route path="/newCraft" element={<NewCraftPage />}></Route>
+        <Route path="/register" element={<RegisterPage onLogIn={(user) => setUser(user)}/>}></Route>
+        <Route path="/newCraft" element={<NewCraftPage loggedIn={user}/>}></Route>
         <Route path="/404" element={<div className="not_found">404: Not found</div>} />
         <Route path="*" element={<Navigate replace to="/404"/>} />
       </Routes>

@@ -1,0 +1,31 @@
+.form {
+  max-width: 75%;
+  margin-top: 2rem;
+  text-align: center;
+  border: 5px solid gray;
+  background-color: lightgray;
+  padding: 1rem;
+}
+
+form > *:not(:last-child) {
+  margin-right: 1.5rem; 
+} 
+
+.form input {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+}
+
+.form button {
+    width: 10rem;
+    background: #800040;
+    color: #fff;
+    border: 1px solid #77002e;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+.form button:hover {
+    background: #800040b9;
+}

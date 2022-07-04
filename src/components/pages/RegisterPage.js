@@ -2,7 +2,7 @@ import Register from "../Register"
 
 function RegisterPage(props){
     return (
-        <Register onRegister={props.onRegister}/>
+        <Register onLogIn={props.onLogIn}/>
     )
 }
 

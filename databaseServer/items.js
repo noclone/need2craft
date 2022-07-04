@@ -31,7 +31,7 @@ const getItems = () => {
 
   const getItemsOfOwner = (owner) => {
     return new Promise(function(resolve, reject) {
-      pool.query(`SELECT * FROM need2craft.items WHERE owner = '${owner}'`, (error, results) => {
+      pool.query(`SELECT name,img FROM need2craft.items WHERE owner = '${owner}'`, (error, results) => {
         if (error) {
           reject(error)
         }

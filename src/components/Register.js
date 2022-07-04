@@ -18,13 +18,9 @@ function Register(props) {
   const [invalidConfirmPassword, setInvalidConfirmPassword] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
 
-  const register = (event) => {
+  const register = async (event) => {
     event.preventDefault();
-    checkUsername(username)
-    checkEmail(email)
-    checkPassword(password)
-    checkConfirmPassword(confirmPassword)
-    if (invalidUsername || invalidEmail || invalidPassword || invalidConfirmPassword)
+    if (await checkUsername(username) || await checkEmail(email) || checkPassword(password) || checkConfirmPassword(confirmPassword))
       return;
     fetch(`http://${HOST}:${PORT}/register`, {
       method: "POST",
@@ -41,18 +37,19 @@ function Register(props) {
         return response.text();
       })
       .then((data) => {
-        const array = JSON.parse(data);
+        console.log(data)
+        /*const array = JSON.parse(data);
         props.onLogIn(array[0]);
-        navigate("/newCraft");
+        navigate("/newCraft");*/
       });
   };
 
-  const checkUsername = (value) => {
+  const checkUsername = async (value) => {
     if (value.length < 4) {
       setInvalidUsername(true);
       return;
     }
-    fetch(`http://${HOST}:${PORT}/users/${value}`)
+    return await fetch(`http://${HOST}:${PORT}/users/${value}`)
       .then((response) => {
         return response.text();
       })
@@ -61,19 +58,21 @@ function Register(props) {
         if (array.length !== 0)
         {
           setInvalidUsername(true);
+          return true;
         }
         else {
           setInvalidUsername(false);
+          return false;
         }
       });
   };
-  const checkEmail = (value) => {
+  const checkEmail = async (value) => {
     const emailExp = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (!emailExp.test(value)) {
       setInvalidEmail(true);
       return;
     }
-    fetch(`http://${HOST}:${PORT}/users/${value}`)
+    return await fetch(`http://${HOST}:${PORT}/users/${value}`)
       .then((response) => {
         return response.text();
       })
@@ -82,9 +81,11 @@ function Register(props) {
         if (array.length !== 0) 
         {
           setInvalidEmail(true);
+          return true;
         }
         else {
           setInvalidEmail(false);
+          return false;
         }
       });
   };
@@ -92,18 +93,22 @@ function Register(props) {
     if (value.length < 6) 
     {
       setInvalidPassword(true);
+      return true;
     }
     else {
       setInvalidPassword(false);
+      return false;
     }
   };
   const checkConfirmPassword = (value) => {
     if (value !== password) 
     {
       setInvalidConfirmPassword(true);
+      return true;
     }
     else {
       setInvalidConfirmPassword(false);
+      return false;
     }
   };
 
@@ -153,6 +158,7 @@ function Register(props) {
             <button type="submit">Register</button>
           </form>
         </div>
+        <div className={classes.login} onClick={() => navigate('/login')}>Already have an account ? Log In !</div>
       </div>
     </div>
   );

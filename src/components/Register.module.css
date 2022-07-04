@@ -64,3 +64,13 @@
   color: rgb(255, 123, 0);
   font-weight: bold;
 }
+
+.login{
+  color: white;
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+
+.login:hover{
+  color: lightgray;
+}

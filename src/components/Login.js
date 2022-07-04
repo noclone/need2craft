@@ -54,6 +54,7 @@ function Login(props) {
             <button type="submit">Log in</button>
           </form>
         </div>
+        <div className={classes.register} onClick={() => navigate('/register')}>No account ? Register here !</div>
       </div>
     </div>
   );

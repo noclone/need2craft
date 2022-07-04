@@ -10,6 +10,8 @@ function ItemsList(props){
 
     const [ itemsList, setItemsList ] = useState([])
 
+    const [ selectedItems, setSelectedItems ] = useState([])
+
     function updateList(){
         if (props.loggedIn != null)
         {
@@ -20,26 +22,47 @@ function ItemsList(props){
             .then((data) => {
                 const array = JSON.parse(data)
                 setItemsList(array)
+                setSelectedItems(new Array(array.length).fill(false))
             })
         }
         else
+        {
             setItemsList(baseItems)
+            setSelectedItems(new Array(baseItems.length).fill(false))
+        }
     }
 
     useEffect(() => {
         updateList()
     }, [props.loggedIn])
+
+    function removeItem(i)
+    {
+        fetch(`http://${HOST}:${PORT}/items/${props.loggedIn.username}/${itemsList[i].name}`, {
+            method: 'DELETE'
+        }).then(
+            response => updateList()
+        )
+        
+    }
     
     function deleteSelectedItems(){
-        
+        if (props.loggedIn == null)
+            return;
+        for (let i = 0; i < selectedItems.length; i++)
+        {
+            if (selectedItems[i])
+                removeItem(i);
+        }
+        updateList()
     }
 
     return (
         <div className={classes.container}>
             <ol className={classes.ItemsList}>
-            { itemsList.map((item) => {
+            { itemsList.map((item, index) => {
                 return (
-                <Item key={item.name} name={item.name} img={item.img}/>
+                <Item key={item.name} name={item.name} img={item.img} selected={[selectedItems, setSelectedItems, index]}/>
                 );
             })}
             </ol>

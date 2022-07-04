@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import classes from "./ItemsList.module.css"
 
@@ -16,6 +16,16 @@ function Item(props)
         })
     }))
     const [isSelected, setIsSelected] = useState(false)
+
+    useEffect(() => {
+        props.selected[0][props.selected[2]] = isSelected;
+        props.selected[1](props.selected[0])
+    }, [isSelected])
+
+    useEffect(() => {
+        setIsSelected(false)
+    }, [props.selected[0]])
+
     return (
         <li className={isSelected ? classes.ItemSelected : classes.Item} onClick={() => setIsSelected(!isSelected)}>
             <img data-tip data-for={props.name} ref={drag} src={props.img} alt={props.name} style={{width:50, height:50}}></img>

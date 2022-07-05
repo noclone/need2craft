@@ -32,6 +32,7 @@ function Item(props)
             <ReactTooltip id={props.name} place="top" effect="solid">
                 {props.name}
             </ReactTooltip> 
+            {typeof props.amount === 'string' && Number(props.amount) !== 1 && <div className={classes.amount}>{`x${props.amount}`}</div>}
         </li>
     );
 }

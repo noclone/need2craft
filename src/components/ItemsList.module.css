@@ -74,3 +74,11 @@
 .deleteBtn:hover{
     background-color: #800040b9;
 }
+
+.amount {
+    position: absolute;
+    font-size: 1.5rem;
+    color: white;
+    background-color: black;
+    transform: translate(2.1rem,1.4rem);
+}

@@ -32,7 +32,7 @@ function MainNavigation(props) {
               >
                 {props.loggedIn.username}
               </button>
-              {isOpen && <BackDrop onClick={() => setIsOpen(false)}/>}
+              {isOpen && <BackDrop backdrop='backdrop' onClick={() => setIsOpen(false)}/>}
               {isOpen && <ProfileMenu disconnect={props.disconnect} close={() => setIsOpen(false)}/>}
             </div>
           )}

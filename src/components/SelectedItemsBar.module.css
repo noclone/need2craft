@@ -1,0 +1,47 @@
+.ItemsList{
+  border: 5px solid gray;
+  width: 40rem;
+  min-height: 5rem;
+  max-height: 15rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  overflow-y: hidden;
+  background-color: lightgray;
+}
+
+.ItemsList:hover{
+  overflow-y: auto;
+}
+
+.Item, .ItemSelected{
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  padding: 10px;
+  margin: 10px;
+}
+
+.ItemSelected{
+  outline: 1px solid gray;
+}
+
+.container{
+  display: flex;
+  flex-direction: rows;
+  justify-content: center;
+}
+
+.tooltip{
+  font-size: 1rem;
+  color: white;
+  background-color: gray;
+  border: solid black;
+  border-radius: 4px;
+  padding: .5rem;
+}
+
+.trashcan {
+  position: absolute;
+  transform: translate(25rem,2rem);
+}

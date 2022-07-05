@@ -1,4 +1,3 @@
-import { useState } from "react"
 import classes from "./CraftTable.module.css"
 
 import Slot from "./Slot"

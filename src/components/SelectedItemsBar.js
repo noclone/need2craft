@@ -76,7 +76,7 @@ function SelectedItemsBar(){
             <button className={classes.addBtnPopup} onClick={() => {addItemToList(ask[1], amount); setAsk([false, null])}}>Add</button>
           </div>
         </div>
-        <BackDrop backdrop="backdrop_dark"/>
+        <BackDrop backdrop="backdrop_dark" onClick={() => setAsk([false, null])}/>
       </div>}
     </div>
   )

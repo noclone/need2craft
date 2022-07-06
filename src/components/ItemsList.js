@@ -6,12 +6,16 @@ import classes from "./ItemsList.module.css";
 
 import baseItems from "./baseItems.json";
 
+import BackDrop from "./BackDrop";
+
 function ItemsList(props) {
   const [itemsList, setItemsList] = useState([]);
 
   const [selectedItems, setSelectedItems] = useState([]);
 
-  const [ filter, setFilter ] = useState("");
+  const [filter, setFilter] = useState("");
+
+  const [ask, setAsk] = useState(false);
 
   function updateList() {
     if (props.loggedIn != null) {
@@ -53,14 +57,48 @@ function ItemsList(props) {
 
   return (
     <div className={classes.containerItemList}>
-      <input className={classes.searchBar} type="text" name="searchText" placeholder="Filter items" onChange={(e) => setFilter(e.target.value)} />
+      {ask && (
+        <div>
+          <BackDrop backdrop="backdrop_dark" onClick={() => setAsk(false)} />
+          <div className={classes.askPopup}>
+            <div className={classes.popupText}>
+              Do you REALLY want to delete these items (irreversible) ?
+            </div>
+            <button
+              className={classes.cancelBtnPopup}
+              onClick={() => setAsk(false)}
+            >
+              Cancel
+            </button>
+            <button
+              className={classes.deleteBtnPopup}
+              onClick={() => {
+                deleteSelectedItems();
+                setAsk(false);
+              }}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      )}
+      <input
+        className={classes.searchBar}
+        type="text"
+        name="searchText"
+        placeholder="Filter items"
+        onChange={(e) => setFilter(e.target.value)}
+      />
       <div className={classes.container}>
         <ol className={classes.ItemsList}>
           {itemsList.map((item, index) => {
-            console.log(item.name)
-            console.log(filter)
-            if (filter !== "" && !item.name.toLowerCase().includes(filter.toLowerCase()))
-                return;
+            console.log(item.name);
+            console.log(filter);
+            if (
+              filter !== "" &&
+              !item.name.toLowerCase().includes(filter.toLowerCase())
+            )
+              return;
             return (
               <Item
                 key={item.name}
@@ -75,7 +113,7 @@ function ItemsList(props) {
           <button onClick={updateList} className={classes.refreshBtn}>
             Refresh List
           </button>
-          <button onClick={deleteSelectedItems} className={classes.deleteBtn}>
+          <button onClick={() => setAsk(true)} className={classes.deleteBtn}>
             Delete Selected Items
           </button>
         </div>

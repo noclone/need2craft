@@ -93,3 +93,46 @@
 .searchBar {
     font-size: 1rem;
 }
+
+.askPopup{
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    background-color: white;
+    padding: 3rem;
+    text-align: center;
+    width: 30rem;
+    z-index: 10;
+    position: fixed;
+    top: 20vh;
+    left: calc(50% - 15rem);
+  }
+  
+  .popupText {
+    font-size: 2rem;
+  }
+  
+  .cancelBtnPopup, .deleteBtnPopup{
+    width: 10rem;
+    font: inherit;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #800040;
+    color: white;
+    border: none;
+    margin-top: 2rem;
+  }
+  
+  
+  .cancelBtnPopup:hover, .deleteBtnPopup:hover{
+    background-color: #800040b9;
+  }
+  
+  
+  .cancelBtnPopup{
+    margin-right: 4rem;
+  }
+  
+  .deleteBtnPopup{
+    margin-left: 4rem;
+  }

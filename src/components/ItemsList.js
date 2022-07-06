@@ -4,8 +4,6 @@ import { HOST, PORT } from "../utils/env";
 
 import classes from "./ItemsList.module.css";
 
-import baseItems from "./baseItems.json";
-
 import BackDrop from "./BackDrop";
 
 function ItemsList(props) {
@@ -18,20 +16,19 @@ function ItemsList(props) {
   const [ask, setAsk] = useState(false);
 
   function updateList() {
-    if (props.loggedIn != null) {
-      fetch(`http://${HOST}:${PORT}/items/of/${props.loggedIn.username}`)
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          const array = JSON.parse(data);
-          setItemsList(array);
-          setSelectedItems(new Array(array.length).fill(false));
-        });
-    } else {
-      setItemsList(baseItems);
-      setSelectedItems(new Array(baseItems.length).fill(false));
-    }
+    let user = 'default'
+    if (props.loggedIn != null)
+      user = props.loggedIn.username;
+
+    fetch(`http://${HOST}:${PORT}/items/of/${user}`)
+      .then((response) => {
+        return response.text();
+      })
+      .then((data) => {
+        const array = JSON.parse(data);
+        setItemsList(array);
+        setSelectedItems(new Array(array.length).fill(false));
+      });
   }
 
   useEffect(() => {
@@ -102,6 +99,7 @@ function ItemsList(props) {
                 key={item.name}
                 name={item.name}
                 img={item.img}
+                canDrag={true}
                 selected={[selectedItems, setSelectedItems, index]}
               />
             );

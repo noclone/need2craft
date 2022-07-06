@@ -8,12 +8,23 @@ function NewItem(props) {
   const [itemName, setItemName] = useState("");
   const [image, setImage] = useState("");
 
+  function isValidImage(link){
+    console.log(link)
+    const valids = [ ".png", ".jpg", ".jpeg", ".gif" ];
+    for (const ext of valids)
+    {
+      if (link.endsWith(ext))
+        return true;
+    }
+    return false;
+  }
+
   const addItem = (event) => {
     event.preventDefault()
     if (
       itemName.length === 0 ||
       image.length === 0 ||
-      !image.endsWith(".png") ||
+      !isValidImage(image) ||
       props.loggedIn == null
     )
       return;

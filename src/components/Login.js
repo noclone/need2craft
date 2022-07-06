@@ -36,7 +36,7 @@ function Login(props) {
           else
           {
             props.onLogIn(array[0])
-            navigate('/newCraft')
+            navigate('/')
           }
         });
   }

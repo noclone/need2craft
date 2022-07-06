@@ -14,10 +14,10 @@ function ResourcesPage(props) {
       <div className="resourcesPage">
         <div>
           <SelectedItemsBar itemsListChanged={(list) => setItemsList(list)}/>
-          <ItemsList loggedIn={props.loggedIn} />
         </div>
-        <div>
-          <Calculator list={itemsList}/>
+        <div className="resourcesPageLists">
+          <ItemsList loggedIn={props.loggedIn} />
+          <Calculator loggedIn={props.loggedIn} list={itemsList}/>
         </div>
       </div>
     </DndProvider>

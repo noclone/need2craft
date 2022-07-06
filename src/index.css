@@ -38,6 +38,13 @@ body {
 
 .resourcesPage {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resourcesPageLists {
+  display: flex;
   flex-direction: row;
   justify-content: center;
+  gap: 10rem;
 }

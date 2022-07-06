@@ -41,7 +41,7 @@
     background-color: #800040;
     color: white;
     border: none;
-    margin: 0 1rem;
+    margin: 1rem 1rem;
     margin-left: 3rem;
 }
 
@@ -76,11 +76,15 @@
 }
 
 .amount {
+    display: block;
+    direction: rtl;
     position: absolute;
-    font-size: 1.5rem;
+    width: 2.3rem;
+    font-size: 1rem;
+    text-align: center;
     color: white;
     background-color: black;
-    transform: translate(2.1rem,1.4rem);
+    transform: translate(1rem,2rem);
 }
 
 .containerItemList{

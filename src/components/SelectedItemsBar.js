@@ -10,7 +10,7 @@ import Item from './Item'
 
 import BackDrop from "./BackDrop"
 
-function SelectedItemsBar(){
+function SelectedItemsBar(props){
 
   const [ itemsList, setItemsList ] = useState([]);
 
@@ -27,6 +27,10 @@ function SelectedItemsBar(){
         isOver: !!monitor.isOver(),
     }),
   }));
+
+  useEffect(() => {
+    props.itemsListChanged(itemsList)
+  }, [itemsList])
 
   const  [ isOverTrash, dropTrash ] = useDrop(() => ({
     accept: "image",

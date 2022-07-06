@@ -92,8 +92,6 @@ function ItemsList(props) {
       <div className={classes.container}>
         <ol className={classes.ItemsList}>
           {itemsList.map((item, index) => {
-            console.log(item.name);
-            console.log(filter);
             if (
               filter !== "" &&
               !item.name.toLowerCase().includes(filter.toLowerCase())

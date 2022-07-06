@@ -35,3 +35,9 @@ body {
   top: 0;
   left: 0;
 }
+
+.resourcesPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

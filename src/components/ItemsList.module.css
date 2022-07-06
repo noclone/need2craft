@@ -82,3 +82,14 @@
     background-color: black;
     transform: translate(2.1rem,1.4rem);
 }
+
+.containerItemList{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.searchBar {
+    font-size: 1rem;
+}

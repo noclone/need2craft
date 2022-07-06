@@ -47,6 +47,7 @@ function SelectedItemsBar(props){
       current = current.filter((el) => el.name !== item.name)
       return [...current, {name: item.name, img: item.id, amount: number}];
     })
+    setAmount(1)
   }
 
   return (

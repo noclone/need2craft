@@ -24,74 +24,72 @@ function Calculator(props) {
         const craft = crafts[l];
         if (craft.result === item.name) {
           newList.splice(i, 1);
-          for (let j = 0; j < item.amount; j++) {
-            if (!known_crafts.some((el) => el.result === item.name)) {
-              const [a, b, c, d, e, f, g, h, i] = await Promise.all([
-                fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item0}`),
-                fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item1}`),
-                fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item2}`),
-                fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item3}`),
-                fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item4}`),
-                fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item5}`),
-                fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item6}`),
-                fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item7}`),
-                fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item8}`),
-              ]);
+          if (!known_crafts.some((el) => el.result === item.name)) {
+            const [a, b, c, d, e, f, g, h, i] = await Promise.all([
+              fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item0}`),
+              fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item1}`),
+              fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item2}`),
+              fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item3}`),
+              fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item4}`),
+              fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item5}`),
+              fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item6}`),
+              fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item7}`),
+              fetch(`http://${HOST}:${PORT}/items/${user}/${craft.item8}`),
+            ]);
 
-              const response = await Promise.all([
-                a.json(),
-                b.json(),
-                c.json(),
-                d.json(),
-                e.json(),
-                f.json(),
-                g.json(),
-                h.json(),
-                i.json(),
-              ]);
+            const response = await Promise.all([
+              a.json(),
+              b.json(),
+              c.json(),
+              d.json(),
+              e.json(),
+              f.json(),
+              g.json(),
+              h.json(),
+              i.json(),
+            ]);
 
-              known_crafts.push({
-                result: item.name,
-                response: response,
-              });
+            known_crafts.push({
+              result: item.name,
+              response: response,
+            });
 
-              for (let k = 0; k < response.length; k++) {
-                if (response[k].length === 0) continue;
-                if (
-                  !newList.some((e) => {
-                    if (e.name === response[k][0].name) {
-                      e.amount += 1;
-                    }
-                    return e.name === response[k][0].name;
-                  })
-                ) {
-                  newList.push({
-                    name: response[k][0].name,
-                    img: response[k][0].img,
-                    amount: 1,
-                  });
-                }
+            for (let k = 0; k < response.length; k++) {
+              if (response[k].length === 0) continue;
+              if (
+                !newList.some((e) => {
+                  if (e.name === response[k][0].name) {
+                    e.amount = Number(e.amount) + Number(item.amount);
+                  }
+                  return e.name === response[k][0].name;
+                })
+              ) {
+                newList.push({
+                  name: response[k][0].name,
+                  img: response[k][0].img,
+                  amount: item.amount,
+                });
               }
-            } else {
-              for (const known_craft of known_crafts) {
-                if (known_craft.result === item.name) {
-                  const response = known_craft.response;
-                  for (let k = 0; k < response.length; k++) {
-                    if (response[k].length === 0) continue;
-                    if (
-                      !newList.some((e) => {
-                        if (e.name === response[k][0].name) {
-                          e.amount += 1;
-                        }
-                        return e.name === response[k][0].name;
-                      })
-                    ) {
-                      newList.push({
-                        name: response[k][0].name,
-                        img: response[k][0].img,
-                        amount: 1,
-                      });
-                    }
+            }
+          } else {
+            for (const known_craft of known_crafts) {
+              if (known_craft.result === item.name) {
+                const response = known_craft.response;
+                for (let k = 0; k < response.length; k++) {
+                  if (response[k].length === 0) continue;
+                  if (
+                    !newList.some((e) => {
+                      if (e.name === response[k][0].name) {
+                        e.amount = Number(e.amount) + Number(item.amount);
+                      }
+                      return e.name === response[k][0].name;
+                    })
+                  ) {
+                    newList.push({
+                      name: response[k][0].name,
+                      img: response[k][0].img,
+                      amount: item.amount,
+                    });
                   }
                 }
               }

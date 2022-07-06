@@ -1,17 +1,19 @@
 .form {
-  max-width: 75%;
-  margin-top: 2rem;
+  max-width: 20rem;
+  height: 20rem;
+  margin-top: 50%;
   text-align: center;
   border: 5px solid gray;
   background-color: lightgray;
   padding: 1rem;
 }
 
-form > *:not(:last-child) {
-  margin-right: 1.5rem; 
-} 
+form > input:first-child {
+  margin-top: 3rem; 
+}
 
 .form input {
+  margin-top: 3rem;
   padding: 6px 10px;
   border: 1px solid #ddd;
 }
@@ -24,6 +26,7 @@ form > *:not(:last-child) {
     padding: 8px;
     border-radius: 8px;
     cursor: pointer;
+    margin-top: 3rem;
   }
 
 .form button:hover {
